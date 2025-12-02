@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Music Desktop — Client Demo</title>
+  <link rel="stylesheet" href="style.css" />
+
+  <!-- Supabase UMD -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
+</head>
+<body>
+  <div id="app">
+    <aside id="leftSidebar" class="sidebar">
+      <div class="brand">Music<span class="dot">•</span></div>
+      <nav class="nav">
+        <button data-route="home" class="nav-btn">Home</button>
+        <button data-route="search" class="nav-btn">Search</button>
+        <button data-route="library" class="nav-btn">Your Library</button>
+        <button data-route="playlists" class="nav-btn">Playlists</button>
+        <button data-route="liked" class="nav-btn">Liked Songs</button>
+        <button data-route="upload" class="nav-btn">Upload Music</button>
+      </nav>
+      <div class="sidebar-foot">
+        <div id="userMini" class="user-mini"></div>
+      </div>
+    </aside>
+
+    <main id="mainPanel">
+      <header id="topBar">
+        <div id="breadcrumbs">Home</div>
+        <div class="top-actions">
+          <div id="searchMini" class="search-mini">
+            <input id="globalSearchInput" placeholder="Search songs, artists, genres..." />
+          </div>
+          <div id="authArea"></div>
+        </div>
+      </header>
+
+      <section id="contentArea" class="content"></section>
+    </main>
+
+    <div id="playerBar">
+      <div id="playerLeft" class="player-section">
+        <img id="playerCover" class="cover" src="" alt="cover" />
+        <div class="meta">
+          <div id="playerTitle" class="title">—</div>
+          <div id="playerArtist" class="artist">—</div>
+        </div>
+        <button id="likeBtn" title="Like">♡</button>
+      </div>
+
+      <div id="playerCenter" class="player-section center">
+        <div class="controls">
+          <button id="prevBtn">⟲</button>
+          <button id="playPauseBtn">▶</button>
+          <button id="nextBtn">⟲</button>
+        </div>
+        <div class="progress">
+          <span id="currentTime">0:00</span>
+          <input id="seek" type="range" min="0" max="100" value="0" />
+          <span id="duration">0:00</span>
+        </div>
+      </div>
+
+      <div id="playerRight" class="player-section">
+        <button id="queueBtn">≡</button>
+        <input id="volume" type="range" min="0" max="1" step="0.01" value="1" />
+        <button id="expandBtn">⬆</button>
+      </div>
+
+      <audio id="audio" preload="auto"></audio>
+    </div>
+
+    <!-- Fullscreen player modal -->
+    <div id="fullscreenModal" class="modal hidden">
+      <div class="modal-inner">
+        <button id="fsClose">✕</button>
+        <div class="fs-content">
+          <img id="fsCover" alt="cover" />
+          <div class="fs-meta">
+            <h2 id="fsTitle"></h2>
+            <p id="fsArtist"></p>
+            <p id="fsAlbum"></p>
+            <div class="fs-badges">
+              <span id="fsExplicit" class="badge hidden">Explicit</span>
+              <span id="fsLanguage" class="badge hidden"></span>
+              <span id="fsGenre" class="badge hidden"></span>
+            </div>
+          </div>
+        </div>
+        <div class="fs-controls">
+          <button id="fsPrev">⟲</button>
+          <button id="fsPlay">▶</button>
+          <button id="fsNext">⟲</button>
+          <input id="fsSeek" type="range" min="0" max="100" value="0"/>
+        </div>
+      </div>
+    </div>
+
+    <!-- Upload modal (keeps your original form IDs) -->
+    <div id="uploadModal" class="modal hidden">
+      <div class="modal-inner">
+        <button id="uploadClose">✕</button>
+        <h3>Upload Music</h3>
+        <form id="uploadForm">
+          <label>Audio file (mp3/wav/mp4):
+            <input type="file" accept="audio/*" id="audioFile" required />
+          </label>
+          <label>Cover image (min 1000×1000):
+            <input type="file" accept="image/*" id="coverFile" required />
+          </label>
+          <label>Title: <input id="metaTitle" required /></label>
+          <label>Artist (select user): <select id="metaArtist"></select></label>
+          <label>Album: <input id="metaAlbum" /></label>
+          <label>Genre:
+            <select id="metaGenre">
+              <option>Pop</option><option>Rock</option><option>Electronic</option><option>Hip-Hop</option><option>Jazz</option><option>Classical</option>
+            </select>
+          </label>
+          <label>Language: <input id="metaLang" value="English" /></label>
+          <label>Explicit: <input type="checkbox" id="metaExplicit" /></label>
+          <div class="form-actions">
+            <button type="submit">Upload</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <div id="toast" class="toast hidden"></div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

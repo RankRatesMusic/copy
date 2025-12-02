@@ -1,0 +1,254 @@
+/* -----------------------
+   GLOBAL THEME
+------------------------ */
+body {
+  margin: 0;
+  padding: 0;
+  background: #0d0d0d;
+  color: white;
+  font-family: Arial, sans-serif;
+  overflow-x: hidden;
+}
+
+h2, h3 {
+  margin: 10px 0;
+}
+
+/* -----------------------
+   LAYOUT
+------------------------ */
+#appContainer {
+  display: grid;
+  grid-template-columns: 220px 1fr;
+  height: 100vh;
+}
+
+#sidebar {
+  background: #111;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  border-right: 1px solid #222;
+}
+
+.nav-btn {
+  padding: 10px 14px;
+  background: #1a1a1a;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.15s;
+  user-select: none;
+}
+.nav-btn:hover {
+  background: #2a2a2a;
+}
+
+#contentArea {
+  padding: 20px;
+  overflow-y: auto;
+}
+
+/* -----------------------
+   GRID / CARDS
+------------------------ */
+.grid {
+  display: grid;
+  gap: 16px;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  margin-top: 10px;
+}
+
+.card {
+  background: #161616;
+  padding: 12px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.2s;
+  text-align: center;
+}
+.card:hover {
+  background: #222;
+}
+
+.card img {
+  width: 100%;
+  height: 160px;
+  object-fit: cover;
+  border-radius: 6px;
+}
+
+.card small {
+  opacity: 0.7;
+}
+
+/* -----------------------
+   PLAYER BAR
+------------------------ */
+#playerBar {
+  position: fixed;
+  bottom: 0;
+  left: 220px;
+  right: 0;
+  height: 110px;
+  background: #111;
+  border-top: 1px solid #222;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding: 10px 20px;
+  z-index: 900;
+}
+
+#playerBar img {
+  width: 70px;
+  height: 70px;
+  border-radius: 6px;
+  object-fit: cover;
+}
+
+.player-info {
+  flex: 1;
+}
+
+.player-controls button {
+  font-size: 20px;
+  margin: 0 6px;
+  background: #1a1a1a;
+  border: none;
+  padding: 8px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+.player-controls button:hover {
+  background: #333;
+}
+
+#seek {
+  width: 180px;
+}
+
+/* -----------------------
+   FULLSCREEN PLAYER
+------------------------ */
+#fullscreenModal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.85);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+}
+
+#fullscreenModal img {
+  width: 320px;
+  height: 320px;
+  object-fit: cover;
+  border-radius: 12px;
+}
+
+#fullscreenModal.hidden {
+  display: none;
+}
+
+.fs-controls {
+  margin-top: 20px;
+}
+
+.fs-controls button {
+  font-size: 26px;
+  margin: 0 14px;
+  padding: 12px 18px;
+  background: #222;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+.fs-controls button:hover {
+  background: #444;
+}
+
+/* -----------------------
+   MODALS (UPLOAD / LOGIN)
+------------------------ */
+.modal,
+#uploadModal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.75);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 10000;
+}
+
+.modal.hidden,
+#uploadModal.hidden {
+  display: none;
+}
+
+.modal-inner,
+#uploadInner {
+  background: #181818;
+  padding: 20px;
+  border-radius: 10px;
+  width: 360px;
+  box-shadow: 0 0 20px #000;
+}
+
+.modal-inner input,
+#uploadInner input,
+#uploadInner select {
+  width: 100%;
+  margin: 6px 0;
+  padding: 8px;
+  border-radius: 6px;
+  border: none;
+  background: #222;
+  color: white;
+}
+
+#uploadClose {
+  background: #333;
+  padding: 8px 14px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+#uploadClose:hover {
+  background: #444;
+}
+
+/* -----------------------
+   AUTH AREA
+------------------------ */
+#authArea button {
+  background: #1a1a1a;
+  padding: 8px 14px;
+  margin-right: 6px;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+}
+#authArea button:hover {
+  background: #333;
+}
+
+/* -----------------------
+   TOAST
+------------------------ */
+#toast {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  background: #111;
+  padding: 10px 16px;
+  border-radius: 6px;
+  opacity: 0.95;
+  z-index: 99999;
+}
+
+#toast.hidden {
+  display: none;
+}
